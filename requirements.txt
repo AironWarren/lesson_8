@@ -1,0 +1,6 @@
+pytest
+requests
+PyPDF2
+xls
+openpyxl
+selene == 2.0.0b17
