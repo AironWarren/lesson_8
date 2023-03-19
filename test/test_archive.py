@@ -48,16 +48,6 @@ def test_ar():
     browser.config.hold_browser_open = True
     options = webdriver.ChromeOptions()
 
-    prefs = {
-        "download.default_directory": "D:\\lesson_7\\test",
-        "download.prompt_for_download": False
-    }
-
-    options.add_experimental_option('prefs', prefs)
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
-
-    browser.config.driver = driver
-
     # путь до test_archive.py
     py_file = os.path.abspath(__file__)
     # путь до dir test
@@ -65,6 +55,16 @@ def test_ar():
     # путь до dir lesson_7, с добавлением новой dir resources
     resources_dir = os.path.abspath(os.path.join(test_dir, '..', 'resources'))
     # lesson_7_dir = os.path.abspath(os.path.join(test_dir, '..'))
+
+    prefs = {
+        "download.default_directory": test_dir,
+        "download.prompt_for_download": False
+    }
+
+    options.add_experimental_option('prefs', prefs)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+
+    browser.config.driver = driver
 
     if not os.path.exists(test_dir + '\\sample4.csv'):
         browser.open(url + 'csv')
